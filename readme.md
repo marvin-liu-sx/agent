@@ -15,7 +15,7 @@ Beekeeper Agent 是一个简单的探针程序。
 
 `Beekeeper Agent` 就是完成这件事的。
 
-![](http://assets.processon.com/chart_image/60cc6af71efad410510db2b0.png)
+![](beekeeper-agent.png)
 
 ## 安装
 
