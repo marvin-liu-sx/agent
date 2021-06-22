@@ -1,9 +1,11 @@
 # Beekeeper Agent
 
 Beekeeper Agent 是一个简单的探针程序。
-主要目的是为bee的 `API` 和`DEBUG API` 加上授权验证。
+主要目的是为 `Bee` 的 `API` 和`DEBUG API` 加上授权验证。
 
-默认情况下，当运行bee时:
+## 背景
+
+默认情况下，当运行 `Bee` 时:
 *	API 运行在 http://localhost:1633 ， 主要用作上传下载数据等功能。
 *	DEBUG API 运行在 http://localhost:1635 ， 主要用作管理节点。
 
@@ -15,7 +17,7 @@ Beekeeper Agent 是一个简单的探针程序。
 
 `Beekeeper Agent` 就是完成这件事的。
 
-![](beekeeper-agent.png)
+![beekeeper-agent](beekeeper.svg)
 
 ## 安装
 
@@ -27,30 +29,36 @@ git checkout [{release-tag}](https://github.com/beekeeperone/agent/releases)
 
 `make linux`
 
-or
+或者
 
 `make darwin`
 
-or
+或者
 
 `make windows`
 
+## 准备工作
 
+1, 确保 `Swarm Bee` 节点服务器拥有公网IP，并且安全策略至少开放一个可用的端口给 `Beekeeper Agent`， 默认为 `50505`。
 
-## 使用
+2, 在 beekeeper.one 个人中心获取token.
 
-准备工作：
+3, 安装 Bee 节点: https://docs.ethswarm.org/docs/installation/install
 
-1. 确保 `Swarm Bee` 节点服务器拥有公网IP，并且安全策略至少开放一个可用的端口给 `Beekeeper Agent`， 默认为 `50505`。
+4, 检查 Bee 节点是否运行正常： https://docs.ethswarm.org/docs/installation/install#check-bee-is-working
 
-2. 在 beekeeper.one 个人中心获取token.
-3. 安装 Bee 节点: https://docs.ethswarm.org/docs/installation/install
-4. 检查 Bee 节点是否运行正常： https://docs.ethswarm.org/docs/installation/install#check-bee-is-working
+## 运行
 
-运行 `Beekeeper Agent`：
+重命名文件:
+
+`mv bee-agent-linux-amd64 bee-agent` 
+
+> 以Linux为例，平台不同，生成的文件也不同.
+
+然后运行:
 
 ```bash
-./bee-agent-linux-amd64 run \\
+./bee-agent run \\
 	--server https://beekeeper.one \\
 	--token {yourtoken} \\
 	--api http://localhost:1635 \\
@@ -59,7 +67,7 @@ or
 ```
 
 * --server:   https://beekeeper.one
-* --token: 你在 个人中心获取到的token, 请不要随意泄漏.
+* --token: 你在 [个人中心](https://beekeeper.one) 获取到的token, 请不要随意泄漏.
 * --api:  默认是 http://localhost:1635， 如果没修改，可以不指定.
 * --debug-api: 默认是 http://localhost:1635， 如果没修改，可以不指定.
 * --port: 暴露给 beekeeper.one 安全连接的端口， 默认 `50505`.
